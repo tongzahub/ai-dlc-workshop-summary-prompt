@@ -20,7 +20,8 @@ those files contain, which is why this page can be handed out.
 
 **Any group.** It reads what your team left behind — the AI-DLC audit trail, your git history,
 your decision log — and writes `TEAM-SUMMARY.html` in your folder: a self-contained
-presentation you can open by double-clicking it, with no internet.
+presentation **in Thai** that you open by double-clicking it, with no internet. It opens with
+a short explainer of AI-DLC itself, then shows what your team actually did with it.
 
 **It runs nothing.** No services, no tests, no checks, no Docker. Shut everything down
 whenever you like; this only reads files.
@@ -53,6 +54,8 @@ READ THESE
 - every file under aidlc-docs/ containing an [Answer]: tag — the questions and our answers
 - team-log.md — roles, decisions, contradictions, gate approvals, hand edits, retro
 - git log --format='%h|%ad|%s' --date=iso and git log --numstat --date=iso
+- AI-DLC-Cheat-Sheet.md, if it is in this folder or the one above it — for the explainer
+  slides. If it is not there, use the essentials written into the slide list below.
 
 RULES
 - Run nothing. Do not start our service, do not run our tests, do not run any check, do not
@@ -65,8 +68,9 @@ RULES
 - Do not open traceability-worksheet.md and do not write anything into it. That is our work.
 - Do not compare us to any other team.
 
-WRITE TEAM-SUMMARY.html IN THIS FOLDER — A SELF-CONTAINED PRESENTATION, ONE SLIDE PER
-SECTION BELOW. The deck spec is at the end. Build the content first, then the deck.
+WRITE TEAM-SUMMARY.html IN THIS FOLDER — A SELF-CONTAINED PRESENTATION IN THAI.
+Build the content of the nine sections below first, then build the deck to the spec at the
+end. The deck opens with an explainer of AI-DLC itself, then presents the nine sections.
 
 1. What we built — three sentences. The system, who it is for, what it does now that works.
 
@@ -107,25 +111,67 @@ section with nothing recorded gets one line saying so and moves on. Do not pad t
 and do not squeeze to one either — a thin slide is the finding, and padding hides it.
 
 THE DECK — TEAM-SUMMARY.html
-Self-contained: one file, no network, no CDN, no external fonts or images, no build step. It
-must open by double-clicking it on a laptop with no internet.
-- A fixed 1280x720 stage centred in the window, scaled to fit, one slide visible at a time.
+
+LANGUAGE — THAI
+Write every heading, label, caption and sentence of your own in Thai.
+Quoted material is never translated. A stakeholder's sentence, a rationale we recorded, a
+retro friction, a file name, a command, a commit message — all stay exactly as they were
+written, in whatever language that was. Translating a quote breaks the one rule this whole
+record rests on. Where a Thai caption introduces an English quote, that is correct.
+
+NOTHING MAY BE CUT OFF — THIS IS THE RULE THAT MATTERS MOST
+A slide never clips its content and never hides it behind an invisible scroll.
+- If a section does not fit on one slide, continue it on the next and title them
+  "… (1/3)", "… (2/3)", "… (3/3)". Splitting is always the right answer.
+- Split a long table by rows across several slides, repeating the header row on each.
+- A long quote gets a slide of its own.
+- Shrink type only down to a floor of about 18px on the 1280x720 stage. Below that, split
+  instead of shrinking. Never shrink to make something fit.
+- Only as a last resort may a content block scroll — and then it must have a visible
+  scrollbar and a "เลื่อนดูต่อ ↓" hint underneath, so nobody can miss that there is more.
+Before you finish, walk every slide and check: is any content outside the stage, or sitting
+under a hidden overflow? If so, split it.
+
+MECHANICS
+- One file. No network, no CDN, no external fonts or images, no build step. It must open by
+  double-clicking on a laptop with no internet.
+- A fixed 1280x720 stage, centred and scaled to fit the window, one slide visible at a time.
 - Arrow keys and click to move; f for fullscreen; p to print one slide per page. Show the
-  slide number in a corner.
-- System font stack only. Light background, dark text, one accent colour, generous type — it
-  has to be readable from the back of a room on a projector.
-- Slide 1 is the title: our team name, our system, our group, the two dates.
-- Tables that are too wide to fit scroll inside their own box; the slide itself never scrolls.
-- Long quotes get their own slide rather than being cut down. Retro frictions stay verbatim.
-Put nothing on a slide that is not in the sections above.
+  slide number and the total in a corner.
+- Fonts: "Leelawadee UI","Noto Sans Thai","Sarabun",Tahoma,sans-serif — system fonts only,
+  nothing downloaded. Thai needs room: line-height 1.6 or more, and never letter-space Thai.
+- Light background, dark text, one accent colour, generous type — readable from the back of a
+  room on a projector.
+
+SLIDES, IN ORDER
+1   Title — our team name, the system we built, our group, the two dates.
+2-3 "AI-DLC คืออะไร" — the explainer. Take it from AI-DLC-Cheat-Sheet.md if you found it;
+    otherwise from these essentials, which are enough:
+    - AI-Driven Development Life Cycle: the agent proposes, the human approves. Every stage
+      ends at a gate with an explicit choice, and nothing advances until a person approves it.
+    - The nine stages: Workspace Detection, Reverse Engineering, Requirements Analysis, User
+      Stories, Workflow Planning, Application Design, Units Generation, Construction, Build
+      and Test. Workflow Planning decides EXECUTE or SKIP for each one — which is why two
+      teams under the same rules end up with different plans, and nobody configured that.
+    - How it is driven: the agent writes its questions into files with an [Answer]: tag, and
+      the answers go in those files, not into chat. Three extensions — Security, Resiliency,
+      Property-Based Testing — are decided at Requirements Analysis, and the reason is
+      recorded whether you take one or decline it.
+    - What it leaves behind: aidlc-docs/ — the state file, the audit trail, requirements,
+      stories, the execution plan, the design and the per-unit docs.
+    End the explainer by pointing forward: "แล้วทีมเราเดินเส้นทางไหน" — the next slides answer it.
+4+  Sections 1 to 9 above, in order, continuing across as many slides as each one needs.
+
+Put nothing on a slide that does not come from the sections above or the explainer essentials.
 ```
 
 ### What you get
 
-`TEAM-SUMMARY.html` — a presentation of your two days, built only from your own artifacts, as
-long as the material warrants and no longer. Double-click to open it; no internet, no
-PowerPoint. It goes back with your folder, and it is the fastest way to brief someone who was
-not in the room.
+`TEAM-SUMMARY.html` — a Thai-language presentation of your two days, built only from your own
+artifacts, as long as the material warrants and no longer. Two slides explain what AI-DLC is;
+the rest is what your team did with it. Double-click to open it; no internet, no PowerPoint.
+It goes back with your folder, and it is the fastest way to brief someone who was not in the
+room — including someone who has never heard of AI-DLC.
 
 It is also the honest test of whether you worked the way the workflow asked. A team that
 answered in files, recorded the why, and committed as it went gets a summary with substance in
