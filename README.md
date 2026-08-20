@@ -8,8 +8,9 @@ Three prompts, one file. Copy the one you need and paste it into your terminal.
 | 2 | **Score one team** | facilitator only | the facilitator repository |
 | 3 | **Reconstruct the two days** | facilitator only | the facilitator repository |
 | 4 | **Workshop timeline map** | facilitator only | the facilitator repository |
+| 5 | **Closing run** — the one you run on the day | facilitator only | the facilitator repository |
 
-Prompts 2, 3 and 4 read internal files — the rubric, the answer sheet — that are **not published
+Prompts 2, 3, 4 and 5 read internal files — the rubric, the answer sheet — that are **not published
 here**. Pasting them anywhere else produces nothing useful. Nothing on this page reveals what
 those files contain, which is why this page can be handed out.
 
@@ -18,11 +19,20 @@ those files contain, which is why this page can be handed out.
 # 1 · Two days, in your own record
 
 **Any group.** It reads what your team left behind — the AI-DLC audit trail, your git history,
-your decision log — and writes `TEAM-SUMMARY.md` in your folder.
+your decision log — and writes `TEAM-SUMMARY.html` in your folder: a self-contained
+presentation you can open by double-clicking it, with no internet.
+
+**It runs nothing.** No services, no tests, no checks, no Docker. Shut everything down
+whenever you like; this only reads files.
 
 **When:** Day 2, after your demo, before the retro. Not earlier.
-**Where:** a session opened at your group folder — the one holding `aidlc-docs/`,
-`team-log.md` and your `.git`. Same place you have been working all along.
+**Where:** a **fresh** session opened at your group folder — the one holding `aidlc-docs/`,
+`team-log.md` and your `.git`. Same folder you have worked in all along, new session.
+
+> **Why a fresh session matters.** Pasted into the session that ran your workflow, the
+> assistant will answer from what it remembers of the conversation instead of reading what
+> was actually written down — and a summary of the chat is not a record of the artifacts. A
+> fresh session has to open the files, which is the whole point.
 
 You do not need to say which group you are. It works that out from your folder.
 
@@ -42,6 +52,8 @@ READ THESE
 - git log --format='%h|%ad|%s' --date=iso and git log --numstat --date=iso
 
 RULES
+- Run nothing. Do not start our service, do not run our tests, do not run any check, do not
+  touch Docker. This is a read of what is already written down.
 - Facts only. Every statement cites the file or the commit it came from.
 - If something is not recorded anywhere, write "not recorded". Do not reconstruct it from
   what probably happened, and do not fill a gap with a plausible guess.
@@ -50,7 +62,8 @@ RULES
 - Do not open traceability-worksheet.md and do not write anything into it. That is our work.
 - Do not compare us to any other team.
 
-WRITE TEAM-SUMMARY.md IN THIS FOLDER, WITH THESE SECTIONS
+WRITE TEAM-SUMMARY.html IN THIS FOLDER — A SELF-CONTAINED PRESENTATION, ONE SLIDE PER
+SECTION BELOW. The deck spec is at the end. Build the content first, then the deck.
 
 1. What we built — three sentences. The system, who it is for, what it does now that works.
 
@@ -77,21 +90,38 @@ WRITE TEAM-SUMMARY.md IN THIS FOLDER, WITH THESE SECTIONS
 7. Where we changed our minds — every mid-workflow change in the audit trail, every gate we
    sent back for changes, every decision we revisited. What changed and why.
 
-8. What our software produces — run whatever check our group folder provides against the
-   answer key that ships with it, and paste the real output. If our numbers do not match,
-   report the mismatch as it is. Do not adjust anything to make it match.
+8. What our software does — from our own records only: the tests we wrote and what they
+   assert, any check output or result we committed, the endpoints and the screen we built,
+   and what our Definition of Done said. Run nothing to find this out. Where we recorded a
+   result, quote it and say where it came from. Where we did not, say "not recorded" — that
+   is the honest answer and it costs nothing.
 
 9. The honest notes — hand edits we declared, anything we skipped and knew we were skipping,
    anything unfinished, and the frictions from our retro in our own words, verbatim.
 
-Keep it under three pages. Where the record is thin, let it read thin — a short honest
-section is the finding, and padding it hides the one thing worth knowing.
+Let the material decide the length. A section with a lot recorded gets more than one slide; a
+section with nothing recorded gets one line saying so and moves on. Do not pad to a target,
+and do not squeeze to one either — a thin slide is the finding, and padding hides it.
+
+THE DECK — TEAM-SUMMARY.html
+Self-contained: one file, no network, no CDN, no external fonts or images, no build step. It
+must open by double-clicking it on a laptop with no internet.
+- A fixed 1280x720 stage centred in the window, scaled to fit, one slide visible at a time.
+- Arrow keys and click to move; f for fullscreen; p to print one slide per page. Show the
+  slide number in a corner.
+- System font stack only. Light background, dark text, one accent colour, generous type — it
+  has to be readable from the back of a room on a projector.
+- Slide 1 is the title: our team name, our system, our group, the two dates.
+- Tables that are too wide to fit scroll inside their own box; the slide itself never scrolls.
+- Long quotes get their own slide rather than being cut down. Retro frictions stay verbatim.
+Put nothing on a slide that is not in the sections above.
 ```
 
 ### What you get
 
-`TEAM-SUMMARY.md` — a factual record of your two days, sourced from your own artifacts. It
-goes back with your folder, and it is the fastest way to brief someone who was not in the room.
+`TEAM-SUMMARY.html` — a ten-slide presentation of your two days, built only from your own
+artifacts. Double-click to open it; no internet, no PowerPoint. It goes back with your folder,
+and it is the fastest way to brief someone who was not in the room.
 
 It is also the honest test of whether you worked the way the workflow asked. A team that
 answered in files, recorded the why, and committed as it went gets a summary with substance in
@@ -114,9 +144,14 @@ before you try this on a real project, not after.
 Run from the facilitator repository, after the team has handed its folder back. Never from
 inside the team's folder.
 
-**78 of the 100 points leave a trace in the repository.** The other 22 — the live demo, the
-backwards walk performed out loud, and the parts about what you saw someone do — do not. This
-prompt scores the 78 and leaves the 22 blank. It must never invent them.
+**It starts nothing and runs nothing** — no Docker, no test suite, no acceptance check.
+Everything below is a read.
+
+That splits the 100 points three ways. **68 can be verified by reading the repository.**
+**10** — 2.2, the answer key — depend on whether the team committed any output of their own
+check; usually they did not, and the point lands with the facilitator, who watched the number
+on the screen. The last **22** are the live demo, the backwards walk performed out loud, and
+the parts about what you saw someone do. This prompt never invents any of the three.
 
 ```text
 Score one AI-DLC workshop team from the artifacts they handed back.
@@ -188,22 +223,29 @@ PASS 2 — PROCESS AND AUDIT TRAIL
     undeclared one is the finding. List suspect commits by hash and what they touched.
     "[FACILITATOR] +0-2 — hand edits you saw in the room: ___"
 
-PASS 3 — WORKING SOFTWARE — RUN THE COMMANDS
-Do not read the code and conclude it looks right. Start their service and run the group's
-acceptance check from Scoring-Sheet.md section 2.2. Paste the real output.
-2.2 answer key reproduced (max 10). Exact match = 10. Partial = the proportion of rows that
-    match, and name the rows that did not.
-    THEN run the anti-false-pass check for this group. Traceability-Map.md's caution section
-    names the loops that a wrong implementation can pass and the question to ask instead —
-    apply it exactly. If the headline check passes while the anti-false-pass check fails, that
-    sentence goes at the TOP of the sheet. It is the most valuable thing this pass produces.
-2.3 tests assert what was at risk, and the screen is thin (max 5). Run their suite. Then read
-    the screen's code: does it call the API, or recompute the number itself? A screen that
-    recomputes scores 0 here regardless of how it looks — the number on it is no longer
-    evidence about the service.
-2.4 brownfield only (max 3). git log the pre-existing test files. Modified? Run them. For a
-    greenfield group mark N/A and remove 3 from both the max and the total — do not award the
-    points by default.
+PASS 3 — WORKING SOFTWARE — FROM THE RECORD, NOT FROM A TEST RUN
+Do not start any service. Do not run any test suite or acceptance check. Read what is in the
+repository, and say plainly how strong that evidence is.
+2.2 answer key reproduced (max 10, RARELY IN THE REPOSITORY). Nothing in this pack runs the
+    check, so the only evidence is whatever the team happened to commit: a check output, a
+    test log, a result recorded in team-log.md or on their own slides. Find it, score from it,
+    and label the row "team-reported, not verified". If there is none — which is the usual
+    case — score 0 with "no output recorded" and leave it to the facilitator, who saw the
+    number on the screen at Checkpoint 4 and at the demo. That is their call, not yours.
+    THEN the anti-false-pass READ. Traceability-Map.md's caution section names the loops a
+    wrong implementation can pass and what to look for instead. Inspect the implementation
+    statically for exactly that. If the team reports a pass while the code shows the pattern
+    the caution describes, that goes at the TOP of the sheet — worded as SUSPECTED, pointing
+    at the file and line. It is the most valuable thing this pass produces, and the
+    facilitator settles it with one question rather than a test run.
+2.3 tests assert what was at risk, and the screen is thin (max 5, verifiable by reading). Read
+    the test files: do they assert the behaviour that was actually at risk, or only that the
+    code runs? Then read the screen's code: does it call the API, or recompute the number
+    itself? A screen that recomputes scores 0 here regardless of how it looks — the number on
+    it is no longer evidence about the service. Neither check needs execution.
+2.4 brownfield only (max 3, verifiable by reading). git log and git diff the pre-existing test
+    files. Were they modified? Report the diff. For a greenfield group mark N/A and remove 3
+    from both the max and the total — do not award the points by default.
 
 PASS 4 — DECISION QUALITY AT GATES
 3.1 contradictions found and resolved with the why (max 6). Search team-log.md and the answer
@@ -235,22 +277,23 @@ WRITE scores/<group>-<team-name>.md
   # <Team> — artifact-based score
   Scored by: AI pass over handed-back artifacts, <date>
   Repository: <path>, <N> commits, <first> -> <last>
-  ## Headline — one sentence. A failed anti-false-pass check goes here.
-  ## Auditable score — <X> / 78   (table: item, max, score, evidence file:line)
+  ## Headline — one sentence. A suspected anti-false-pass finding goes here.
+  ## Verified by reading — <X> / 68   (table: item, max, score, evidence file:line)
+  ## Team-reported, not verified — 2.2 answer key, <X> / 10, source <file:line>
+     Quote the output the team recorded, verbatim. If there is none, say so.
   ## Needs the facilitator — 22 points not in the repository
      2.1 acceptance scenario demoed live, on the screen  12  ___
      4.1 walked one number backwards, live                4  ___
      1.1 Reviewer read before approving                   2  ___
      1.2 answers given in chat                            2  ___
      1.6 hand edits seen in the room                      2  ___
-  ## Commands run — verbatim, with output
   ## Three things this team did that a real project would want
   ## Three things that would bite them on a real project
   ## One sentence for the team
   ## One thing they should take back
 
-Do not compute a /100 total. The facilitator adds the 22 and does that per team, against that
-team's own brief — and does not publish it.
+Do not compute a /100 total. The facilitator adds the 22, confirms the 10, and does that per
+team, against that team's own brief — and does not publish it.
 ```
 
 ---
@@ -358,7 +401,7 @@ every team's retro is a property of AI-DLC, not of a team, and belongs in front 
 exactly as written. Finally answer honestly: where would we NOT recommend this process? A
 report that says "adopt it everywhere" is not believed.
 
-WRITE THREE FILES
+WRITE TWO FILES
 scores/workshop-summary-<date>.md — inventory and anything missing; the full merged timeline;
   agenda versus actual; per team the stages executed, units, extension with rationale,
   deviations; what was caught before it was built with timestamp pairs; cross-team patterns in
@@ -367,40 +410,9 @@ scores/outcome-report-draft.md — a copy of Workshop-Outcome-Report.md with sec
   from the above. Leave section 7 EMPTY: the recommendation to the sponsor is the facilitator's
   judgement, not a derivable fact. Fill the section 6 readiness table from scores/*.md if those
   exist; leave the internal scores table blank if they do not.
-scores/closing-deck.html — the deck for the closing session. Spec below.
 
-THE CLOSING DECK
-Read AI-DLC-Intro-Deck.html in this repository FIRST and reuse its <style> block and its slide
-markup verbatim — the same classes (.slide, .eyebrow, .body, .callout, .card, .cols, .split,
-.tile, .pg), the same 1280x720 stage, the same keyboard handling: arrows to move, f for
-fullscreen, n for speaker notes, p to print one slide per page. Both decks are shown in the
-same room on the same day and must look like one set. Self-contained: no network, no CDN, no
-external fonts, no external images. Put the facilitator's talking points in the speaker notes,
-not on the slides.
-
-One slide each, in this order:
-  1  Title — client, dates, number of teams, AI-DLC rules version
-  2  What we set out to show — the two claims from section 1 of the report
-  3  The plan comparison — the EXECUTE/SKIP matrix, every team side by side, nine stages
-  4  The sponsor sentence, filled in with the real numbers
-  5+ ONE SLIDE PER TEAM: the sentence a human said, and the number it landed on. The quote
-     on top, the number underneath, in large type. Nothing else on the slide.
-  .  Where the chains broke — the honest table, and the cross-team pattern in one line
-  .  "A green demo is not evidence" — the closing lesson set out in the caution section of
-     Traceability-Map.md, which every team has now demoed past. That file says to say it out
-     loud; give it its own slide and put the reasoning in the speaker notes.
-  .  What the process caught before the code existed — the timestamp pairs
-  .  The honest cost — the derived metrics, and the retro frictions VERBATIM
-  .  Where we would not recommend this process
-  .  The awards — one slide, team names left BLANK for the facilitator to fill in by hand
-     before presenting. Default award names, unless the facilitator has chosen others:
-     Recorded Decision · Walkable Chain · Uncomfortable Question · and the room's pick.
-
-WHAT NEVER GOES ON THE DECK
-- Any score, any subtotal, any /100, anything drawn from the per-team scores/*.md files
-- Anything that puts the teams in an order
-Slide 3 compares the SHAPE of the plans. That is the thesis of the workshop, not a ranking,
-and it must not be presented as one.
+The closing deck is not built here — prompt 5 owns it, and by the time you run this it has
+already been presented. If the deck needs regenerating with fuller data, re-run prompt 5.
 
 Print only: what is missing, the "___ to ___ stages executed" sentence, and the cross-team
 pattern from section 3.
@@ -493,18 +505,122 @@ Print only: the attribution basis, and any half day where the roster is blank.
 
 ---
 
+# 5 · Closing run · facilitator · **this is the one you run on the day**
+
+One paste, one machine, every team, before the workshop closes. It produces the closing deck
+and the crib sheet you hold while presenting it.
+
+**When:** while the demos are running. Teams finish their work at Checkpoint 4, so collect the
+folders then and start this — the deck is ready for the comparison slot without you leaving
+the room.
+
+**What it deliberately does not do:** it does not score anyone — scoring needs live
+observation you do not have before the close. Like every other prompt in this pack, it starts
+no services and runs no tests; it reads artifacts. Prompts 2, 3 and 4 do the rest afterwards,
+and nothing here has to be redone.
+
+```text
+Build the closing session material from every team's artifacts.
+Team folders: g1=<path> g2=<path> g3=<path> [g4=<path>]
+
+THIS IS THE FAST RUN — artifacts only. Do not start any service, do not run any test suite,
+do not score anyone. Budget twenty minutes. If something is missing, note it and move on
+rather than hunting for it.
+
+READ, FROM THIS REPOSITORY
+- Traceability-Map.md — to check each team's demoed chain is real, and its caution section
+- AI-DLC-Intro-Deck.html — you will reuse its styles and slide markup
+- ../AIDLC-Workshop-Kit/Workshop-Agenda.md
+PER TEAM, READ-ONLY
+- aidlc-docs/audit.md, aidlc-docs/aidlc-state.md, the execution plan, the unit docs
+- team-log.md and traceability-worksheet.md
+- git log --format='%h|%ad|%s' --date=iso
+
+RULES
+- Never rank the teams. The only cross-team comparison is the SHAPE of the execution plans.
+  Do not order teams by stage count, commit count, or anything else.
+- Derived or blank. A cell you cannot source is "not recorded", and say so on the crib sheet
+  so you are not caught out on stage.
+- Retro frictions go in VERBATIM. Do not smooth, translate, or merge them.
+- Only the groups that actually ran get a column or a slide.
+
+EXTRACT PER TEAM — this is the whole list
+1. EXECUTE or SKIP for each of the nine stages; the count; the number of Units of Work
+2. The extension decision, with the recorded rationale QUOTED
+3. The loop they demoed: the sentence a human said, and the number it landed on. Check it
+   against Traceability-Map.md — is it one of the 18, is it real, is it one of the easy ones
+4. Where their chain broke, in their own words from traceability-worksheet.md
+5. ONE decision recorded before the code that implements it existed, with both timestamps —
+   the decision in team-log.md or an answer file, and the first commit touching that code
+6. Their retro frictions, verbatim
+7. How many gates they sent back for changes, out of the total
+
+THEN, ACROSS TEAMS
+- the sponsor sentence with real numbers: "N teams, one methodology, ___ to ___ stages
+  executed. Nobody configured that difference." If the numbers are identical across teams,
+  say that plainly instead — it would mean the workflow did not adapt, and it is the most
+  important sentence of the day.
+- the pattern in the broken chains, in one line
+- whether the same friction appears in every team's retro
+
+WRITE scores/closing-deck.html
+Read AI-DLC-Intro-Deck.html FIRST and reuse its <style> block and slide markup verbatim — the
+same classes (.slide, .eyebrow, .body, .callout, .card, .cols, .split, .tile, .pg), the same
+1280x720 stage, the same keys: arrows to move, f fullscreen, n speaker notes, p print. Both
+decks are shown in the same room on the same day and must look like one set. Self-contained:
+no network, no CDN, no external fonts or images. Talking points go in the speaker notes, not
+on the slides.
+Slides, in order:
+  1  Title — client, dates, number of teams, AI-DLC rules version
+  2  What we set out to show — one methodology, N engagements, N execution plans; and every
+     behaviour traceable to a sentence someone said
+  3  The plan comparison — the EXECUTE/SKIP matrix, every team side by side, nine stages
+  4  The sponsor sentence, filled in
+  5+ ONE SLIDE PER TEAM: the quote on top, the number underneath, large. Nothing else.
+  .  Where the chains broke — the honest table, and the pattern in one line
+  .  "A green demo is not evidence" — the closing lesson set out in the caution section of
+     Traceability-Map.md. That file says to say it out loud; give it a slide of its own and
+     put the reasoning in the speaker notes.
+  .  What the process caught before the code existed — the timestamp pairs
+  .  The retro frictions, verbatim
+  .  The awards — team names left BLANK to fill in by hand. Default names, unless the
+     facilitator has chosen others: Recorded Decision, Walkable Chain, Uncomfortable
+     Question, and the room's pick.
+NEVER ON THE DECK: any score, any subtotal, any /100, anything that puts the teams in an
+order. Slide 3 compares plan SHAPE — the thesis, not a ranking.
+
+WRITE scores/closing-crib.md
+One page to hold while presenting. Per slide: the number or quote that is on it, and the one
+sentence to say. Then a short list of what was missing from the artifacts, so nothing on the
+deck surprises you in front of the room.
+
+Print the "___ to ___ stages" sentence and anything that was missing.
+```
+
+---
+
 ## Running order
+
+**On the day**
 
 | When | Run | Produces |
 |---|---|---|
-| Day 2, after the demo | **1**, by each team in its own folder | `TEAM-SUMMARY.md` per team |
-| After hand-back | **2**, once per team, from the facilitator repo | `scores/<group>-<team>.md` |
-| After every team is scored | **3**, once, from the facilitator repo | `scores/workshop-summary-<date>.md` + `scores/outcome-report-draft.md` + `scores/closing-deck.html` |
+| Day 2, after the demo | **1**, by each team in its own folder | `TEAM-SUMMARY.html` per team |
+| Day 2, during the demos | **5**, once, from the facilitator repo | `scores/closing-deck.html` + `scores/closing-crib.md` |
 
-| Any time after hand-back | **4**, once, from the facilitator repo | `scores/timeline-map-<date>.md` |
+Prompt 5 is the only one that has to finish before the room empties. It reads artifacts only,
+so collect the folders at Checkpoint 4 and start it as the first team begins demoing.
+
+**Afterwards, at your desk**
+
+| When | Run | Produces |
+|---|---|---|
+| After hand-back | **2**, once per team | `scores/<group>-<team>.md` |
+| After every team is scored | **3**, once | `scores/workshop-summary-<date>.md` + `scores/outcome-report-draft.md` |
+| Any time after hand-back | **4**, once | `scores/timeline-map-<date>.md` |
 
 Prompt 3 reads what prompt 2 wrote. Run them the other way round and section 6 comes out empty.
-Prompt 4 is independent — run it whenever, before or after either.
+Prompt 4 is independent — run it whenever.
 
 Then the human part: fill the 22 live-observation points in each score file, write section 7 of
 the report draft, merge into `Workshop-Outcome-Report.md`, send it to the sponsor.
