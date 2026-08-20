@@ -18,10 +18,10 @@ those files contain, which is why this page can be handed out.
 
 # 1 · Two days, in your own record
 
-**Any group.** It reads what your team left behind — the AI-DLC audit trail, your git history,
-your decision log — and writes `TEAM-SUMMARY.html` in your folder: a self-contained
-presentation **in Thai** that you open by double-clicking it, with no internet. It opens with
-a short explainer of AI-DLC itself, then shows what your team actually did with it.
+**Any group.** The recap you show at the close. It reads what your team left behind — the
+AI-DLC audit trail, your git history, your decision log — and writes `TEAM-SUMMARY.html` in
+your folder: a self-contained presentation **in Thai** that you open by double-clicking it,
+with no internet. Two acts — **เราทำอะไรไปบ้าง**, then **เราได้อะไรบ้าง**.
 
 **It runs nothing.** No services, no tests, no checks, no Docker. Shut everything down
 whenever you like; this only reads files.
@@ -68,43 +68,79 @@ RULES
 - Do not open traceability-worksheet.md and do not write anything into it. That is our work.
 - Do not compare us to any other team.
 
-WRITE TEAM-SUMMARY.html IN THIS FOLDER — A SELF-CONTAINED PRESENTATION IN THAI.
-Build the content of the nine sections below first, then build the deck to the spec at the
-end. The deck opens with an explainer of AI-DLC itself, then presents the nine sections.
+WRITE TEAM-SUMMARY.html IN THIS FOLDER — A SELF-CONTAINED RECAP PRESENTATION IN THAI.
+This is what a team shows at the close of a two-day workshop. It answers two questions, in
+this order: **เราทำอะไรไปบ้าง** and then **เราได้อะไรบ้าง**. Build the content first, then the
+deck to the spec at the end.
+
+ACT 1 — เราทำอะไรไปบ้าง
 
 1. What we built — three sentences. The system, who it is for, what it does now that works.
 
-2. Our execution plan — a table of all nine AI-DLC stages with EXECUTE or SKIP for each, and
-   the reason recorded for each SKIP. Where no reason was recorded, write "no reason
-   recorded". Then: how many stages we executed, and how many Units of Work we produced.
+2. How we worked — AI-DLC in one slide. Context for everything that follows, not a lecture:
+   the agent proposes and the human approves; every stage ends at a gate and nothing advances
+   until a person approves it; Workflow Planning decides EXECUTE or SKIP per stage, which is
+   why teams under the same rules end up with different plans; the agent's questions go into
+   files with an [Answer]: tag and are answered there, not in chat; three extensions
+   (Security, Resiliency, Property-Based Testing) are decided at Requirements Analysis with
+   the reason recorded either way. Use AI-DLC-Cheat-Sheet.md if you found it. Keep it to what
+   the room needs to follow the next slide.
 
-3. Our extension decision — Security, Resiliency, Property-Based Testing: which we took,
-   which we declined, and the rationale we recorded, quoted. A decline with no recorded
-   reason counts as no reason.
+3. The path our team took — the nine stages (Workspace Detection, Reverse Engineering,
+   Requirements Analysis, User Stories, Workflow Planning, Application Design, Units
+   Generation, Construction, Build and Test) with EXECUTE or SKIP for each, and the reason
+   recorded for each SKIP. Where no reason was recorded, write "ไม่ได้บันทึกเหตุผลไว้". Then how
+   many stages we executed and how many Units of Work we produced.
 
-4. The two days, hour by hour — one merged timeline from audit.md entries and git commit
+4. Our extension decision — which we took, which we declined, and the rationale we recorded,
+   quoted. A decline with no recorded reason counts as no reason.
+
+5. The two days, hour by hour — one merged timeline from audit.md entries and git commit
    timestamps. Columns: time, what happened, source. Include every gate. Mark any gate where
    we requested changes rather than continuing.
 
-5. The questions the workflow asked us, and how we answered — one row per [Answer]: tag.
+6. The questions the workflow asked us, and how we answered — one row per [Answer]: tag.
    Columns: the question in short, our answer in short, and where our answer came from if we
    recorded a source (a stakeholder, a document, a quoted sentence).
 
-6. Decisions we made, and why — from team-log.md and our answer files. Columns: the decision,
-   the reason we recorded, when. Put the contradictions we resolved in their own sub-table:
-   what disagreed with what, and how we settled it.
+7. Decisions we made, and why — from team-log.md and our answer files. Columns: the decision,
+   the reason we recorded, when.
 
-7. Where we changed our minds — every mid-workflow change in the audit trail, every gate we
+8. Where we changed our minds — every mid-workflow change in the audit trail, every gate we
    sent back for changes, every decision we revisited. What changed and why.
 
-8. What our software does — from our own records only: the tests we wrote and what they
-   assert, any check output or result we committed, the endpoints and the screen we built,
-   and what our Definition of Done said. Run nothing to find this out. Where we recorded a
-   result, quote it and say where it came from. Where we did not, say "not recorded" — that
-   is the honest answer and it costs nothing.
+ACT 2 — เราได้อะไรบ้าง
 
-9. The honest notes — hand edits we declared, anything we skipped and knew we were skipping,
-   anything unfinished, and the frictions from our retro in our own words, verbatim.
+This act is an INVENTORY, not a claim. Count and quote what exists. Do not assert value the
+artifacts do not show, do not write anything that sounds like marketing, and do not congratulate
+us. A section with nothing behind it gets one honest line and moves on — that is a result too.
+
+9. What we have now that we did not have two days ago — count it. How many files under
+   aidlc-docs/ and what they are; how many commits, over how many hours; the service and its
+   endpoints; the tests and what they assert; the screen; how many decisions are in
+   team-log.md; how many gates were passed.
+
+10. What the process caught before it was built — decisions recorded BEFORE the code that
+    implements them existed. For each, put both timestamps side by side: when the decision
+    was written down, and the first commit touching the code that carries it out. Find as
+    many as the record supports. This is the strongest thing in the deck; if there are none,
+    say so plainly rather than reaching.
+
+11. Contradictions that got settled on record — what disagreed with what, how we settled it,
+    who decided, and where it is written down.
+
+12. What we deliberately did not build — scope parked with a recorded reason rather than
+    silently built or silently dropped, and where that decision lives.
+
+13. The honest cost — first commit to last, how many rounds of questions before Requirements
+    closed, how many gates we sent back for changes, any hand edit we declared, and anything
+    left unfinished.
+
+14. Frictions, in our own words — verbatim from our retro. Do not smooth them, do not
+    translate them, do not merge two into one.
+
+15. What we would take to a real project — only if we recorded it. If we did not, write
+    "ยังไม่ได้บันทึกไว้" and let that be the last honest line of the deck.
 
 Let the material decide the length. A section with a lot recorded gets more than one slide; a
 section with nothing recorded gets one line saying so and moves on. Do not pad to a target,
@@ -144,38 +180,35 @@ MECHANICS
   room on a projector.
 
 SLIDES, IN ORDER
-1   Title — our team name, the system we built, our group, the two dates.
-2-3 "AI-DLC คืออะไร" — the explainer. Take it from AI-DLC-Cheat-Sheet.md if you found it;
-    otherwise from these essentials, which are enough:
-    - AI-Driven Development Life Cycle: the agent proposes, the human approves. Every stage
-      ends at a gate with an explicit choice, and nothing advances until a person approves it.
-    - The nine stages: Workspace Detection, Reverse Engineering, Requirements Analysis, User
-      Stories, Workflow Planning, Application Design, Units Generation, Construction, Build
-      and Test. Workflow Planning decides EXECUTE or SKIP for each one — which is why two
-      teams under the same rules end up with different plans, and nobody configured that.
-    - How it is driven: the agent writes its questions into files with an [Answer]: tag, and
-      the answers go in those files, not into chat. Three extensions — Security, Resiliency,
-      Property-Based Testing — are decided at Requirements Analysis, and the reason is
-      recorded whether you take one or decline it.
-    - What it leaves behind: aidlc-docs/ — the state file, the audit trail, requirements,
-      stories, the execution plan, the design and the per-unit docs.
-    End the explainer by pointing forward: "แล้วทีมเราเดินเส้นทางไหน" — the next slides answer it.
-4+  Sections 1 to 9 above, in order, continuing across as many slides as each one needs.
+1  Title — our team name, the system we built, our group, the two dates. Under it, one line
+   of real numbers taken from the sections: "สองวัน · รัน __ จาก 9 stage · __ unit of work ·
+   __ commit · __ การตัดสินใจที่บันทึกไว้".
+2  "สองวันนี้เราทำอะไร" — the recap in five lines. It works as the contents page for what
+   follows, so someone who reads only this slide still knows what happened.
+3+ Act 1, items 1 to 8, in order, across as many slides as each needs.
+.  A divider slide: "เราได้อะไรบ้าง".
+.  Act 2, items 9 to 15, in order.
+.  Last slide: the single line from item 15, on its own.
 
-Put nothing on a slide that does not come from the sections above or the explainer essentials.
+Put nothing on a slide that does not come from the sections above.
 ```
 
 ### What you get
 
-`TEAM-SUMMARY.html` — a Thai-language presentation of your two days, built only from your own
-artifacts, as long as the material warrants and no longer. Two slides explain what AI-DLC is;
-the rest is what your team did with it. Double-click to open it; no internet, no PowerPoint.
-It goes back with your folder, and it is the fastest way to brief someone who was not in the
-room — including someone who has never heard of AI-DLC.
+`TEAM-SUMMARY.html` — a Thai-language recap of your two days, built only from your own
+artifacts, as long as the material warrants and no longer. Double-click to open it; no
+internet, no PowerPoint. It goes back with your folder, and it is the fastest way to brief
+someone who was not in the room.
+
+Act 2 is the half worth reading twice. **เราได้อะไรบ้าง** is not a list of achievements — it is
+an inventory: what exists now that did not exist on Monday, and which decisions were written
+down *before* the code that carries them out, with both timestamps next to each other. That
+pair of timestamps is the hardest thing to argue with, and it is the closest thing you have to
+proof that the process did something a normal sprint would not.
 
 It is also the honest test of whether you worked the way the workflow asked. A team that
-answered in files, recorded the why, and committed as it went gets a summary with substance in
-every section. A team that did not gets a lot of "not recorded" — which is worth knowing
+answered in files, recorded the why, and committed as it went gets a recap with substance in
+every section. A team that did not gets a lot of "ไม่ได้บันทึกไว้" — which is worth knowing
 before you try this on a real project, not after.
 
 ### What it deliberately does not do
