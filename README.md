@@ -36,6 +36,9 @@ whenever you like; this only reads files.
 
 You do not need to say which group you are. It works that out from your folder.
 
+> **Copying it:** use the copy button at the top right of the block below. One click takes
+> exactly this prompt and nothing else.
+
 ```text
 Read what my team left behind over the last two days and write a factual record of it.
 
@@ -119,9 +122,10 @@ Put nothing on a slide that is not in the sections above.
 
 ### What you get
 
-`TEAM-SUMMARY.html` — a ten-slide presentation of your two days, built only from your own
-artifacts. Double-click to open it; no internet, no PowerPoint. It goes back with your folder,
-and it is the fastest way to brief someone who was not in the room.
+`TEAM-SUMMARY.html` — a presentation of your two days, built only from your own artifacts, as
+long as the material warrants and no longer. Double-click to open it; no internet, no
+PowerPoint. It goes back with your folder, and it is the fastest way to brief someone who was
+not in the room.
 
 It is also the honest test of whether you worked the way the workflow asked. A team that
 answered in files, recorded the why, and committed as it went gets a summary with substance in
